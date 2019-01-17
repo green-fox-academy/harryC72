@@ -1,9 +1,10 @@
+let a: number = 156;
+let b: number = 246;
+let tmp: number;
 
-let a:number = 123;
-let b:number = 526;
-
-a=b;
-b=123;
+tmp = b;
+b = a;
+a = tmp;
 
 console.log(a);
 console.log(b);

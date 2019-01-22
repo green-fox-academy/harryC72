@@ -7,13 +7,11 @@ console.log(numList);
 
 let numList2: number[] = [3, 4, 5, 6, 7];
 let temp: number[] = [];
+let arrayLength: number = numList2.length;
 
-for(let i:number = 0; i<numList2.length; i++)
-{
-  for(let j: number = numList2.length; j<= 0; j--)
-  {
-    temp[i]= numList2[j];
+  while(arrayLength--)
+    {
+        temp.push(numList2.pop());
+    }
 
-  }
-}
 console.log(temp);

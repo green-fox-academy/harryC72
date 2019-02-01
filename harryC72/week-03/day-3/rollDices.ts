@@ -7,7 +7,6 @@ function RollDices() {
 
   diceSet.roll();
   rollResult = diceSet.getCurrent(0);
-  console.log(rollResult);
   
   if (rollResult === 6) {
     diceSet.dice.shift();

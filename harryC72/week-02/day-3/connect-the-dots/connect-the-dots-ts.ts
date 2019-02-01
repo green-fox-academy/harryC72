@@ -23,20 +23,30 @@ let endPosY: number = 0;
 
 function connectTheDots(XYarray: number[][]) {
 
-  for (let i: number = 1; i < XYarray.length; i++) {
+  for (let i: number = 0; i < XYarray.length; i++) {
     
-    if(i==)
+    if(i==XYarray.length-1)
     {
       startPosX = XYarray[0][0];
       startPosY = XYarray[0][1];
+      endPosX = XYarray[i][0];
+      endPosY = XYarray[i][1];
+
+      drawALine(startPosX, startPosY, endPosX, endPosY);
+
     }
-    
-    endPosX = XYarray[i][0];
-    endPosY = XYarray[i][1];
+    else{
+      startPosX = XYarray[i][0];
+      startPosY = XYarray[i][1];
+      endPosX = XYarray[i+1][0];
+      endPosY = XYarray[i+1][1];
+
+      drawALine(startPosX, startPosY, endPosX, endPosY);
+
+    }
 
   }
 
-  drawALine(startPosX, startPosY, endPosX, endPosY);
 
 }
 

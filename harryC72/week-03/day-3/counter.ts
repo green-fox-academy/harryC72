@@ -7,7 +7,7 @@
 //     and we can get() the current value as string
 //     also we can reset() the value to the initial value
 
-class Counter{
+export class Counter{
   counter: number;
   initial: number;
 

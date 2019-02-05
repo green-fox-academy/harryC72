@@ -11,6 +11,10 @@ const accounts: any[] = [
 // getNameAndBalance(11234543);
 // should return: ['Igor', 203004099.2]
 
+
+
+
+
 function getNameAndBalance(accountNumber: number): any[]{
   
   let result: any[] = [];

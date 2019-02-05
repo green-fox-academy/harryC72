@@ -24,6 +24,7 @@ class PirateShip {
   name: string;
   list_pirate: Pirate[];
   captain: Captain;
+  otherShip: PirateShip;
 
   constructor() {
     this.list_pirate = [];
@@ -55,12 +56,12 @@ class PirateShip {
     console.log(`The captain has consumed ${this.captain.drinkCounter} bottles of rum`);
     if (!this.captain.active && !this.captain.dead) { "The captain is sleeping it off in the officer/'s quarters" };
     if (this.captain.dead) { "The captain is unfortunately dead. Long live the captain!" };
-    console.log(`${this.getPercentageAlive}% of the pirate crew are alive`);
+    console.log(`${this.geAlive}% of the pirate crew are alive`);
 
 
   }
 
-  getPercentageAlive() {
+  getNUmberAlive() {
     let aliveCrewMembers = new Counter(0);
 
     this.list_pirate.forEach(function (value) {
@@ -71,15 +72,17 @@ class PirateShip {
 
     return result;
   }
-}
 
-//         Ships should have a method to battle other ships: ship.battle(otherShip)
+  //         Ships should have a method to battle other ships: ship.battle(otherShip)
 //         should return true if the actual ship (this) wins
 //         the ship should win if its calculated score is higher
 //         calculate score: Number of Alive pirates in the crew - Number of consumed rum by the captain
 //         The loser crew has a random number of losses (deaths).
 //         The winner captain and crew has a party, including a random number of rum :)
 
-  battle(){
+battle(){
     
-  }
+}
+
+}
+

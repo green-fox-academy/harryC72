@@ -1,8 +1,10 @@
 
+import * as weapons from './weapons'
+import { Weapon } from './weapon';
+import { Armour} from './armour'
 import { Pirate } from './pirate'
-import { Weapon } from './weapon'
-import { flintlockPistol, saber} from './weapons'
-import { Armour } from './armour'
+
+
 
 export class Captain extends Pirate {
 
@@ -13,7 +15,7 @@ export class Captain extends Pirate {
 
     super(name)
     this.name = name;
-    this.weapon2 = flintlockPistol;
+    this.weapon2 = weapons.flintlockPistol;
 
   }
 

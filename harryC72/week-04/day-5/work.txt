@@ -1,0 +1,4 @@
+et readlineSync = require('readline-sync');
+let todoItem: string = readlineSync.question(
+  'Welcome to my todo app, what would you like to add today? '
+);

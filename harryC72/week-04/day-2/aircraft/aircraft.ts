@@ -11,11 +11,15 @@ export class Aircraft{
          maxAmmo: number;
          baseDamage: number;
          damage: number;
+         type: string
 
-         constructor(a: number, ma: number, d: number){
-           this.ammo = a;
-           this.maxAmmo = ma;
-           this.baseDamage = d;
+         constructor(planeAmmo: number, planeMaxAmmo: number,
+           planeBaseDamage: number, planeDamage: number,  planeType:string){
+           this.ammo = planeAmmo;
+           this.maxAmmo = planeMaxAmmo;
+           this.baseDamage = planeBaseDamage;
+           this.damage = planeDamage;
+           this.type = planeType;
          }
 
          // fight
@@ -23,9 +27,10 @@ export class Aircraft{
 //     It should use all the ammos (set it to 0) and it should return the damage it deals
 //     The damage is the multiplication of the base damage and the ammos
 
-         fight(enemyPlane: Aircraft): number{
+         fight(): number{
               let damage: number = this.ammo * this.baseDamage;
-              enemyPlane.damage += damage;
+              this.damage += damage;
+              this.ammo = 0;
               return damage;
          }
 
@@ -42,14 +47,16 @@ export class Aircraft{
             remainingAmmo = amountRefillAmmo - ability;
             if(remainingAmmo<0){
               this.ammo = this.ammo - remainingAmmo;
+            }else{
+              this.ammo = this.maxAmmo;
             }
-              console.log(this.ammo);
               
             return remainingAmmo;
         }
 
         getType(): string{
-          return this.constructor.name;
+          let result: string = this.type;
+          return result;
         }
 
         getStatus(): string{

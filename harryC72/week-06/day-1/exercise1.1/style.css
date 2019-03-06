@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+}
+
+header{
+  display: flex;
+  background: lightcoral;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  margin-top: 100px;
+  top: 0;
+
+}
+

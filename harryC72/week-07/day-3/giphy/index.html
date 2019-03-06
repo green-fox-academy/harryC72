@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let parent = document.getElementsByTagName('body');
+    parent = parent[0];
+
+     let createContent = (data) => {
+      let htmlcontent = '';
+      for(let i = 0; i <10; i++){
+        htmlcontent += `<img src=${data[i].images["fixed_height_still"].url}></img>`;
+      }
+      parent.insertAdjacentHTML('beforeend', htmlcontent);
+    }
+    let data = {};
+    let gifs = [];
+
+    let http = new XMLHttpRequest();
+    http.open("GET",
+    'https://api.giphy.com/v1/gifs/trending?api_key=1aMcoMiCD9hR2fNUC0rwRGKRjpuN2pxh&q=fail&limit=16',
+    true );
+    http.send();
+    http.onreadystatechange = (e) => {
+    data = JSON.parse(http.response).data;
+    console.log('data on readystate', data);
+    createContent(data);
+
+    }
+
+
+   
+
+
+  
+    
+  </script>
+</body>
+</html>

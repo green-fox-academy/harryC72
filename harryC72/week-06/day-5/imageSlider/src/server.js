@@ -1,4 +1,3 @@
-const db = require('./database')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -6,17 +5,26 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 const path = require('path');
+require('dotenv').config();
+app.listen(PORT, () => {
+  console.log(`server is running at ${ PORT}`);
+}); //CALLBACK 
 
+var mysql = require('mysql');
+const db = require('./database');
+
+var con = mysql.createConnection({
+  host: process.env.DB_host,
+  user: process.env.DB_user,
+  password: process.env.DB_password,
+  database: process.env.DB_database
+});
 
 app.set('view engine', 'ejs');
 
 app.use('/static', express.static('static'));
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-app.listen(PORT, () => {
-  console.log(`server is running at ${ PORT}`);
-});
 
 app.get('/',(req, res) => {
   res.sendFile(path.join(__dirname, 'views/index.html'));
@@ -32,19 +40,7 @@ app.post('/storeShark', urlencodedParser, (req, res) =>{
   res.render('successfully-stored', {data:req.body});
 });
 
-
-app.get('/sharks')
-
-var mysql = require('mysql');
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "harryxenon",
-  password: "loom55",
-  database: "sharkie"
-});
-
- let insertOne = (sharkName) => {
+let insertOne = (sharkName) => {
   con.query('INSERT INTO Shark SET ?',
   sharkName, (err, res) => {
     if(err) throw err;
@@ -53,6 +49,14 @@ var con = mysql.createConnection({
   });
 }
 
-let getInfo = (callback) {
-  var sql ='SELECT * FROM Shark'
-}
+
+
+app.get('/sharks', (req
+  , res) => {
+  con.query('SELECT * FROM Shark', (err, rows) =>{
+    if(err) throw err;
+    res.render('sharks', { data: rows});
+  });
+});
+
+

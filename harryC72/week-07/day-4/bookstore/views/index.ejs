@@ -5,16 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="../static/styleBookStore.css">
 </head>
 <body>
 
-<div class="booklist">
-<% data.forEach(book => { %>
-<div> title: <%= book.book_name %> </div>
-<div> title: <%= book.aut_name %> </div>
+<table class="booklist">
+<tr>
+  <th>title</th>
+  <th>author</th>
+  <th>category</th>
+  <th>publisher</th>
+  <th>price</th>
+</tr>
 
+<% data.forEach(book => { %>
+  <tr>
+<td><%= book.book_name %> </td>
+<td><%= book.aut_name %> </td>
+<td><%= book.cate_descrip %> </td>
+<td><%= book.pub_name %> </td>
+<td><%= book.book_price %> </td>
+</tr>
 <% }); %>
-</div>
+</table>
   
 </body>
 </html>

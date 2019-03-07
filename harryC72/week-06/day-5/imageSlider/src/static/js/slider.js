@@ -107,10 +107,16 @@ let goForward = (n) => {
 }
 
 
-
-
 displayImage(0, imageArray);
 createThumbnails(7, 0, imageArray);
+
+let sharkContainer = document.getElementById('sharkContainer');
+let createShark = (content) => {
+let sharkDiv = document.createElement('div');
+sharkDiv.classList.add('sharkInfo');
+sharkDiv.innerText = `name: ${content}`;
+}
+
 
 
 

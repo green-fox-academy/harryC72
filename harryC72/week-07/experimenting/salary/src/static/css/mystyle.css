@@ -1,0 +1,28 @@
+body{
+  height: 100%;
+}
+
+#employeeForm{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: auto;
+  margin: 20px;
+}
+
+#mainContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+#resultBox{
+  margin: 20px;
+}

@@ -1,0 +1,30 @@
+EVENTBUBBLING
+
+let removeBook = () => {
+const list = document.querySelector('#containerBooks ul');
+list.addEventListener('click', (e) =>{
+if(e.target.className == 'deleteButton') {
+const li = e.target.parentElement;
+list.removeChild(li);
+}
+});
+}
+
+CHECKBOXES
+
+let hideAuthors = () => {
+const hideBox = document.querySelector('#hide');
+const authors = document.getElementsByClassName('bookAuthor');
+hideBox.addEventListener('change', (e) => {
+if(hideBox.checked){
+Array.from(authors).forEach(element => {
+element.style.display = 'none'
+});
+}else{
+Array.from(authors).forEach(element => {
+element.style.display = 'inline';
+});
+}
+})
+}
+

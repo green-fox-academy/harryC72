@@ -26,7 +26,7 @@
     'https://api.giphy.com/v1/gifs/trending?api_key=1aMcoMiCD9hR2fNUC0rwRGKRjpuN2pxh&q=fail&limit=16',
     true );
     http.send();
-    http.onreadystatechange = (e) => {
+    http.onload = () => {
     data = JSON.parse(http.response).data;
     console.log('data on readystate', data);
     createContent(data);

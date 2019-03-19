@@ -1,0 +1,14 @@
+let removeBook = () => {
+const list = document.querySelector('#containerBooks ul');
+list.addEventListener('click', (e) =>{
+if(e.target.className == 'deleteButton') {
+const li = e.target.parentElement;
+list.removeChild(li);
+}
+});
+}
+
+if (current.value.length >= current.maxLength) {  
+document.getElementById(nextFieldID).focus();  
+}  
+} 

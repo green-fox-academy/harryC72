@@ -24,7 +24,7 @@ app.get('/doubling', (req, res) => {
   res.end(JSON.stringify({ 'recieved': input, 'result': result }));
 });
 
-app.get('/greeter', (req, res) => {
+app.get('/greeter/', (req, res) => {
   name = req.query.name;
   title = req.query.title;
   if (name == undefined && title == undefined) {

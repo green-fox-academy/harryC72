@@ -1,0 +1,115 @@
+window.addEventListener('load', function () {
+
+  initSubmitButton();
+
+});
+
+
+
+function initSubmitButton() {
+
+  const button = document.getElementById('submit-button');
+
+
+
+  if (typeof button !== 'undefined') {
+
+    button.onclick = function (event) {
+
+      event.stopPropagation();
+
+      event.preventDefault();
+
+
+
+      postFormData();
+
+    };
+
+  }
+
+}
+
+
+
+function postFormData() {
+
+  const req = new XMLHttpRequest();
+
+  req.addEventListener('load', processResponse);
+
+  req.open('POST', config.backendURL + config.endPoints.post.link);
+
+  req.setRequestHeader('Content-Type', 'application/json');
+
+  req.send(JSON.stringify(getFormData()));
+
+}
+
+
+
+function getFormData() {
+
+  return {
+
+    url: document.getElementById('form-url').value,
+
+    alias: document.getElementById('form-alias').value,
+
+  }
+
+}
+
+
+
+function processResponse(data) {
+
+  console.log(data);
+
+}
+
+list.addEventListener('click', (e) =>{
+if(e.target.className == 'deleteButton') {
+const li = e.target.parentElement;
+list.removeChild(li);
+}
+});
+}
+
+let http = new XMLHttpRequest();
+http.open("GET",
+'https://api.giphy.com/v1/gifs/trending?api_key=1aMcoMiCD9hR2fNUC0rwRGKRjpuN2pxh&q=fail&limit=16',
+true );
+http.send();
+http.onload = () => {
+let data = JSON.parse(http.response).data;
+console.log('data on readystate', data);
+createContent(data);
+
+}
+
+ let http = new XMLHttpRequest();
+    http.open("GET",
+    'https://api.giphy.com/v1/gifs/trending?api_key=1aMcoMiCD9hR2fNUC0rwRGKRjpuN2pxh&q=fail&limit=16',
+    true );
+    http.send();
+    http.onload = () => {
+    data = JSON.parse(http.response).data;
+    console.log('data on readystate', data);
+    createContent(data);
+
+    }
+
+
+let removeBook = () => {
+const list = document.querySelector('#containerBooks ul');
+list.addEventListener('click', (e) =>{
+if(e.target.className == 'deleteButton') {
+const li = e.target.parentElement;
+list.removeChild(li);
+}
+});
+}
+
+
+div>div>div>h1+p+p+p+p+img

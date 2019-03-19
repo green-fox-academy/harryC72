@@ -1,0 +1,7 @@
+#employeeForm{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: auto;
+  
+}

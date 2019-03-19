@@ -1,0 +1,237 @@
+JAVASCRIPT
+<script src="myscripts.js"></script> grant all privileges on salarySystem to harryxenon@localhost identified by "loom55";
+
+
+STYLESHEET
+
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+
+SET UP DATABASE
+
+npm init -y
+npm install express
+npm install mysql
+npm install dotenv
+
+
+sudo mysql 
+create database todoList;
+grant all privileges on todoList * to harryxenon@localhost identified by "loom55";
+
+
+.env content
+DB_host= "localhost"
+DB_user="harryxenon"
+DB_password= "loom55"
+DB_database= "myBookList"
+
+'use strict'
+
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const PORT = 8080;
+const mysql = require('mysql');
+app.use(express.json());
+const path = require('path');
+
+
+
+app.use('/static', express.static('static'));
+
+app.listen(PORT, () => {
+console.log(`Server is listening at ${PORT}`)
+});
+
+const con = mysql.createConnection({
+host: process.env.DB_host,
+user: process.env.DB_user,
+password: process.env.DB_password,
+database: process.env.DB_database
+});
+
+app.get('/hello', (req, res) => res.send('Hello World!'));
+
+
+
+let SQL = `SELECT ...`;
+
+IF USING API
+
+post request
+app.post('/posts', (req, res) => {
+let SQL = '';
+if (!(req.headers == 0 || req.header.user_name == null)) {
+SQL = `SELECT user_id FROM
+redditUser
+LEFT JOIN redditPosts
+ON ${req.body.user_name} = redditUser.user_name
+INSERT INTO redditPosts (user_id) VALUES (redditUser.user_id)
+INSERT INTO redditPosts (title, url) VALUES
+('${req.body.title}', '${req.body.url}')`
+} else {
+SQL = `INSERT INTO redditPosts (title, url) VALUES ('${req.body.title}', '${req.body.url}')`;
+}
+con.query(SQL, (err, rows) => {
+console.log(rows);
+if (err) {
+console.error(err);
+res.status(500).send();
+return;
+}
+SQL = `SELECT * FROM redditPosts WHERE post_id = ${rows.insertId}`
+con.query(SQL, (err, rows) => {
+if (err) {
+console.error(err);
+res.status(500).send();
+return;
+};
+res.send(rows);
+})
+});
+});
+
+
+
+
+api end point 
+app.get('/booklistAPI', (req, res)=> {
+con.query(SQL, (err,rows) => {
+if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      };
+res.send(rows);
+console.log(rows);
+});
+});
+
+The rendering html-page
+app.get('/index',function(req,res){
+res.sendFile(path.join(__dirname+'/static/html/index.html'));
+});
+
+IF USING EJS-TEMPLATES
+npm install ejs
+
+app.set('view engine', 'ejs');
+app.get('/booklist', (req,res) => {
+con.query(SQL, (err, rows) => {
+if (err) {
+console.error(err);
+res.status(500).send();
+return;
+}
+res.render('index', {data: rows});
+console.log(rows);
+
+});
+});
+
+
+AJAX-CALLS
+
+Get
+
+let parent = document.getElementsByTagName('body');
+parent = parent[0];
+
+let createContent = (data) => {
+let htmlcontent = '';
+for(let i = 0; i <10; i++){
+htmlcontent += `<img src=${data[i].images["fixed_height_still"].url}></img>`;
+}
+parent.insertAdjacentHTML('beforeend', htmlcontent);
+}
+let data = {};
+let gifs = [];
+
+let http = new XMLHttpRequest();
+http.open("GET",
+'https://api.giphy.com/v1/gifs/trending?api_key=1aMcoMiCD9hR2fNUC0rwRGKRjpuN2pxh&q=fail&limit=16',
+true );
+http.send();
+http.onload = () => {
+data = JSON.parse(http.response).data;
+console.log('data on readystate', data);
+createContent(data);
+}
+
+
+Post or Put
+
+const config = {
+backendURL: 'http://localhost:4000/',
+endPoints: {
+post: {
+link: 'api/links',
+}
+}
+}
+
+window.addEventListener('load', function () {
+initSubmitButton();
+});
+
+function initSubmitButton() {
+const button = document.getElementById('submit-button');
+if (typeof button !== 'undefined') {
+button.onclick = function (event) {
+event.stopPropagation();
+event.preventDefault();
+postFormData();
+};
+}
+}
+
+function postFormData() {
+const req = new XMLHttpRequest();
+req.addEventListener('load', processResponse);
+req.open('POST', config.backendURL + config.endPoints.post.link);
+req.setRequestHeader('Content-Type', 'application/json');
+req.send(JSON.stringify(getFormData()));
+
+}
+
+function getFormData() {
+return {
+url: document.getElementById('form-url').value,
+alias: document.getElementById('form-alias').value,
+}
+}
+
+function processResponse(data) {
+console.log(data);
+}
+
+SQL
+SQL = `SELECT user_id FROM
+redditUser
+LEFT JOIN redditPosts
+ON ${req.body.user_name} = redditUser.user_name
+INSERT INTO redditPosts (user_id) VALUES (redditUser.user_id)
+INSERT INTO redditPosts (title, url) VALUES
+('${req.body.title}', '${req.body.url}')`;
+
+CREATE TABLE IF NOT EXISTS applicants (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+country VARCHAR(255) NOT NULL,
+age INT NOT NULL,
+PRIMARY KEY (id)
+);
+
+INSERT INTO applicants ( id, name, country, age )
+VALUES(34, 'Haraldo', 'Sweden', 45),
+(35, "Jimmy", "USA", 33);
+
+
+ERROR
+if (shortUrl.length > 0) {
+increaseHitCountByAlias(shortUrl[0].alias);
+res.redirect(shortUrl[0].url);
+} else {
+sendStatus(res, 404);
+}

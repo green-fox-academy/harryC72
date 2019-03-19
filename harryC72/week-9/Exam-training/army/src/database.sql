@@ -8,3 +8,6 @@ name VARCHAR(255) NOT NULL,
 sold_id INT NOT NULL,
 FOREIGN KEY (sold_id) REFERENCES soldier(sold_id)
 ); 
+
+grant all privileges on army to harryxenon@localhost identified by "loom55";
+
